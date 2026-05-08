@@ -1,62 +1,77 @@
-🛡️ Sentinel API Gateway
-Production-Ready Node.js Backend & Containerized Infrastructure
+🛡️ Aegis Flow
 
-This project demonstrates a Security-First approach to backend engineering. Instead of a basic API, I built a decoupled system where the application and database are isolated using Docker, ensuring high scalability and a zero-drift deployment.
+High-Performance Security Gateway & Containerized Backend Infrastructure
 
-🚀 Quick Deployment
+🚀 The Problem & The Solution
 
-Deploy the entire stack in under 2 minutes using Infrastructure as Code (IaC).
+Many developers build functional APIs that collapse under load or suffer from major security gaps. Aegis Flow is a high-performance Security-First API Gateway and Backend System. Built for production, it isolates critical infrastructure to ensure data integrity, prevent unauthorized access, and handle high concurrency.
 
-1. Environment Configuration
+🏗️ Architectural Excellence
+1. Zero-Drift Deployment (IaC)
 
-Create a .env file in the root directory:
-Code snippet
+Forget manual configurations. The entire system is orchestrated via Docker Compose. A single command spins up a containerized environment that is immutable and consistent from development to production.
 
-DATABASE_USER=your_db_user
+2. High-Performance Resilience
 
-DATABASE_PASSWORD=your_secure_password
+Integrated Database Connection Pooling (pg-pool) allows the gateway to handle massive request spikes without crashing, ensuring reliable service availability.
 
-DATABASE_NAME=your_db_name
+3. Persistent Data Layer
 
-DATABASE_HOST=db
+Strategically implemented Docker Volumes keep the PostgreSQL data independent of the container lifecycle. Containers can be destroyed or updated without losing database state.
 
-DATABASE_PORT=5432
+🔒 Security-First Logic
+1. Custom Auth Middleware
 
-API_KEY=your_secret_access_key
+Acting as the primary gatekeeper, a custom authentication layer validates every request before it even reaches the core business logic.
 
-2. Launch Commands
-Bash
+2. Zero-Exposure Secrets
 
-git clone https://github.com/FarukhMumtaz/sentinel-api-gateway.git
+No credentials are hardcoded. Sensistive data like API_KEY and database credentials are obfuscated and injected via environment variables (.env).
 
-cd sentinel-api-gateway
+🛠️ Tech Stack & Directory Structure
 
-docker compose up --build -d
+Runtime: Node.js (Express Framework)
 
+Database: PostgreSQL (Production Optimized)
 
-🏗️ System Architecture & Logic
-The Modular Core
+DevOps: Docker & Docker Compose (Container Orchestration)
 
-The system is built on a Decoupled Architecture. By isolating the Node.js runtime from the PostgreSQL layer, the infrastructure remains future-proof—allowing for independent scaling or database migrations without code refactoring
-I implemented a Custom Auth Middleware that acts as the primary gatekeeper. It validates every incoming request; if the traffic isn't authenticated, it is dropped before ever touching the application logic.
+    Bash
 
-💎 Key Engineering Features
+    aegis-flow/
+    ├── src/                        # Gateway Source Code
+    │   ├── middleware/             # Security & Auth Logic
+    │   ├── routes/                 # Express API Endpoints
+    │   ├── db.js                   # Connection Pooling Logic
+    │   └── app.js                  # Application Entry Point
+    ├── docker-compose.yml          # Infrastructure Orchestration (IaC)
+    ├── Dockerfile                  # Node.js Container Definition
+    ├── .env.example                # Secrets Template
+    └── README.md                   # System Documentation
 
-    ⚡ Database Pooling: Integrated pg-pool to manage active connections, preventing system crashes during high-traffic spikes.
+⚡ Quick Start (Deploy in < 2 mins)
+1. Configuration
 
-    💾 Data Persistence: Used Docker Volumes to ensure data remains persistent even if containers are destroyed or updated.
+Create a .env file in the root directory by copying the template:
+    Bash
 
-    🔒 Secrets Management: Zero hardcoded credentials. All sensitive keys are injected via environment variables for production security.
+    DATABASE_USER=your_secure_user
+    DATABASE_PASSWORD=your_secure_password
+    DATABASE_NAME=aegis_db
+    DATABASE_HOST=db
+    DATABASE_PORT=5432
+    API_KEY=your_secret_access_key
 
-🛠️ Tech Stack
+2. Build & Launch
 
-    Backend: Node.js (Express Framework)
+Run the entire infrastructure in detached mode:
+    Bash
 
-    Database: PostgreSQL (Containerized)
+    docker compose up --build -d
 
-    DevOps: Docker & Docker Compose (IaC)
+Note: The first run initializes a Docker Volume for database persistence.
 
 👨‍💻 Developed By
 
 Farukh Mumtaz
-Cloud Architect & Security Engineer Aspirant
+Aspiring DevOps Engineer
