@@ -83,4 +83,4 @@ Note: The first run initializes a Docker Volume for database persistence.
 
 Farukh Mumtaz
 
-Aspiring DevSecOps Engineer.
+Aspiring DevSecOps Engineer
